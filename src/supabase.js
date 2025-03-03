@@ -27,4 +27,26 @@ export async function fetchMondaisuAsunc(){
     return count;
 }
 
+export async function insertScoreAsync(name, score){
+    const { error } = await supabase
+        .from('Ranking')
+        .insert({name, score});
+    if (error) {
+        console.error(error);
+    }
+}
+
+export async function fetchRankingAsync(){
+    const { data, error } = await supabase
+        .from('Ranking')
+        .select("score, name")
+        .neq('name', '')
+        .order('score', {ascending: false})
+        .limit(10);
+    if (error) {
+        console.error(error);
+    }
+    return data;
+}
+
 //fetchKanjiYomiAsync([1,3,5,7]);

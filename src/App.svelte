@@ -11,7 +11,7 @@ import GameOverModal from "./GameOverModal.svelte";
 import FancyScore from "./FancyScore.svelte";
 
 const [InitialState, TitleState, QuestionState, AnswerState, GameoverState, QuizStart] = [0, 1, 2, 3, 4, 5];
-const maxTime = 60;
+const maxTime = 10;
 let time = maxTime;
 let currentScore = 0;
 let renzokuSeikai = 0;
@@ -61,6 +61,12 @@ function changeToQuizStart(){
 function answerButtonClicked(isCorrect){
   if (state !== QuestionState) return;
   fancyScore.updateScore(isCorrect);
+  if (fancyScore.getRenzokuSeikai() >= 5){
+    time = Math.min(time + 1, maxTime);
+  }
+  else if (!isCorrect){
+    time -= 1;
+  }
   changeToAnswer();
 }
 </script>

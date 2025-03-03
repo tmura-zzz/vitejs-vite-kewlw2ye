@@ -22,6 +22,11 @@
     export function getScore(){
         return currentScore;
     }
+
+    /** 連続正解数 */
+    export function getRenzokuSeikai(){
+        return renzokuSeikai;
+    }    
 </script>
 
 <div class="bg-red-200 flex justify-around text-xl font-bold p-3">
