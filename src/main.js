@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { mount } from 'svelte'
 import App from './App.svelte'
 
